@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "emil.sso.v1;ssov1";
+
+service Auth{
+    rpc Register(RegisterRequest) returns (RegisterResponce);
+    rpc Login(LoginRequest) returns (LoginResponce);
+    rpc IsAdmin(IsAdminRequest) returns (IsAdminResponce);
+}
+
+message RegisterRequest{
+    string email = 1;
+    string password = 2;
+}
+
+message RegisterResponce{
+    int64 user_id = 1;
+}
+
+message LoginRequest{
+    string email = 1;
+    string password = 2;
+    int32 app_id = 3; 
+}
+
+message LoginResponce{
+    string token = 1;
+}
+
+message IsAdminRequest{
+    int64 user_id = 1;
+}
+
+message IsAdminResponce{
+    bool is_admin = 1;
+}
